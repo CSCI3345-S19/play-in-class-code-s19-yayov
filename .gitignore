@@ -19,7 +19,10 @@ dist
 # hidden cross project folders
 shared/.js
 shared/.jvm
+
+# secret
 conf/private.conf
+app/util/CodeGen
 
 # temp files
 .~*

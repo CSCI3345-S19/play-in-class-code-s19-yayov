@@ -1,0 +1,33 @@
+@* tempWelcome Template File *@
+@(monthYearForm: Form[MonthYear])(implicit request: MessagesRequestHeader, flash:Flash)
+
+@main("Historical Temps for SA") {
+	<h2 id="heading">Historical San Antonio Temps</h2>
+	GET -
+	<form action="temp" method="get">
+		<input type="text" name="month"></input>/<input type="text" name="year"></input>
+		<input type="submit"></input>
+	</form>
+	<br>
+	POST -
+	<form action="temp" method="post">
+		@helper.CSRF.formField
+		<input type="text" name="month"></input>/<input type="text" name="year"></input>
+		<input type="submit"></input>
+	</form>
+	<br>
+	Play POST -
+	@helper.form(action = routes.TempController.postMonthForm()) {
+		@helper.CSRF.formField
+		@helper.inputText(monthYearForm("month"))
+		@helper.inputText(monthYearForm("year"))
+		<div class="form-actions">
+			<button type="submit">View Month</button>
+		</div>
+	}
+	<div>
+		<input type="text" id="av-year"></input>
+		<p id="text-for-av-temp">Nothing</p>
+	</div>
+	<script src="@routes.Assets.versioned("javascript/ajaxTemp.js")"></script>
+}

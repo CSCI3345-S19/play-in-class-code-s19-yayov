@@ -1,5 +1,7 @@
 package util
 
+
+
 import slick.jdbc.MySQLProfile.api._
 import java.util.concurrent.ConcurrentHashMap
 import scala.concurrent.duration.Duration
@@ -8,6 +10,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import models._
 import Tables._
+import edu.trinity.webapps.shared.SharedSales._
 
 object AddStarterData extends App {
   val db = Database.forURL("jdbc:mysql://localhost/sales?user=mlewis&password=password&nullNamePatternMatchesAll=true&serverTimezone=UTC", user="mlewis", password="password", driver="com.mysql.cj.jdbc.Driver")
@@ -38,4 +41,4 @@ object AddStarterData extends App {
           OrderAssocRow(4, 3, 2))
     )), Duration.Inf)
     db.close()
-} 
+}
